@@ -7,5 +7,4 @@ aws dynamodb create-table \
         AttributeName=processClientId,KeyType=HASH \
         AttributeName=currStatus,KeyType=RANGE \
     --provisioned-throughput \
-        ReadCapacityUnits=5,WriteCapacityUnits=5 \
-    --table-class STANDARD
+        ReadCapacityUnits=5,WriteCapacityUnits=5
