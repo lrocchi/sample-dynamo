@@ -4,11 +4,13 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 
+import java.util.List;
+
 @DynamoDbBean
 public class Transaction {
 	private String processClientId;
 	private String currStatus;
-	private String targetStatus;
+	private List<String> targetStatus;
 
 	@DynamoDbPartitionKey
 	public String getProcessClientId() {
@@ -28,11 +30,11 @@ public class Transaction {
 		this.currStatus = currStatus;
 	}
 
-	public String getTargetStatus() {
+	public List<String> getTargetStatus() {
 		return targetStatus;
 	}
 
-	public void setTargetStatus(String targetStatus) {
+	public void setTargetStatus(List<String> targetStatus) {
 		this.targetStatus = targetStatus;
 	}
 
