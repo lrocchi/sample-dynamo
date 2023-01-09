@@ -6,56 +6,42 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortK
 
 @DynamoDbBean
 public class Transaction {
-	@Override
-	public String toString() {
-		return "Transaction{" +
-				"process_id='" + process_id + '\'' +
-				", client_id='" + client_id + '\'' +
-				", curr_status='" + curr_status + '\'' +
-				", target_status='" + target_status + '\'' +
-				'}';
-	}
-
-	private String process_id;
-	
-	private String client_id;
-	
-	private String curr_status;
-	private String target_status;
+	private String processClientId;
+	private String currStatus;
+	private String targetStatus;
 
 	@DynamoDbPartitionKey
-	public String getProcess_id() {
-		return process_id;
+	public String getProcessClientId() {
+		return processClientId;
 	}
 
-	public void setProcess_id(String process_id) {
-		this.process_id = process_id;
+	public void setProcessClientId(String processClientId) {
+		this.processClientId = processClientId;
 	}
 
 	@DynamoDbSortKey
-	public String getClient_id() {
-		return client_id;
+	public String getCurrStatus() {
+		return currStatus;
 	}
 
-	public void setClient_id(String clieent_id) {
-		this.client_id = clieent_id;
+	public void setCurrStatus(String currStatus) {
+		this.currStatus = currStatus;
 	}
 
-	public String getCurr_status() {
-		return curr_status;
+	public String getTargetStatus() {
+		return targetStatus;
 	}
 
-	public void setCurr_status(String curr_status) {
-		this.curr_status = curr_status;
+	public void setTargetStatus(String targetStatus) {
+		this.targetStatus = targetStatus;
 	}
 
-	public String getTarget_status() {
-		return target_status;
+	@Override
+	public String toString() {
+		return "Transaction{" +
+				"processClientId='" + processClientId + '\'' +
+				", currStatus='" + currStatus + '\'' +
+				", targetStatus='" + targetStatus + '\'' +
+				'}';
 	}
-
-	public void setTarget_status(String target_status) {
-		this.target_status = target_status;
-	}
-
-
 }

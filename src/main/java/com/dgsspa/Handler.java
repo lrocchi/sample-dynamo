@@ -6,7 +6,6 @@ import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.Key;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
-import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
 
 import java.util.ArrayList;
@@ -15,16 +14,12 @@ import java.util.List;
 
 
 public class Handler {
-    private final DynamoDbClient dynamoDbClient;
 
     public Handler() {
-        dynamoDbClient = DependencyFactory.dynamoDbClient();
-    }
-
-    public void sendRequest() {
-        // TODO: invoking the api calls using dynamoDbClient.
 
     }
+
+    
     public List<Transaction> queryTable(String partition_id, String sort_id) {
         try {
             DynamoDbEnhancedClient enhancedClient = DependencyFactory.dynamoDbEnhancedClient();
@@ -38,12 +33,12 @@ public class Handler {
             // Get items in the table and write out the ID value.
             Iterator<Transaction> results = transactionTable.query(queryConditional).items().iterator();
 
-            List<Transaction> result = new ArrayList<Transaction>();
+            List<Transaction> result = new ArrayList<>();
             while (results.hasNext()) {
                 Transaction rec = results.next();
                 result.add(rec);
-                System.out.println("The title of the movie is "+rec.getProcess_id());
-                System.out.println("The movie information  is "+rec.getTarget_status());
+                System.out.println("The process of the movie is "+rec.getProcessClientId());
+                System.out.println("The target status information  is "+rec.getTargetStatus());
             }
             return result;
 
