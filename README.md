@@ -5,7 +5,6 @@ This project contains a maven application with [AWS Java SDK 2.x](https://github
 ## Prerequisites
 - Java 1.8+
 - Apache Maven
-- GraalVM Native Image (optional)
 
 ## Development
 
@@ -36,18 +35,5 @@ Below is the structure of the generated project.
 mvn clean package
 ```
 
-#### Building the native image
 
-Note that it requires `native-image` installed in your environment
-
-```
-mvn clean package -P native-image
-```
-After it finishes, you can find the generated native image in the `target
-` folder. 
-
-You can run the following command to execute it.
-
-```
-target/sample-dynamo
 ```
