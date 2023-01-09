@@ -19,7 +19,7 @@ public class Handler {
 
     }
 
-    
+
     public List<Transaction> queryTable(String partition_id, String sort_id) {
         try {
             DynamoDbEnhancedClient enhancedClient = DependencyFactory.dynamoDbEnhancedClient();
