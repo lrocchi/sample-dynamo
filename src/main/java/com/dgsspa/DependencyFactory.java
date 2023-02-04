@@ -1,6 +1,7 @@
 
 package com.dgsspa;
 
+import org.springframework.context.annotation.Bean;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
@@ -17,8 +18,8 @@ public class DependencyFactory {
     public static DynamoDbClient dynamoDbClient() {
         return DynamoDbClient.builder().build();
     }
-
-    public static DynamoDbEnhancedClient dynamoDbEnhancedClient(){
+@Bean
+    public DynamoDbEnhancedClient dynamoDbEnhancedClient(){
         DynamoDbClient ddb = DependencyFactory.dynamoDbClient();
         return DynamoDbEnhancedClient.builder().dynamoDbClient(ddb).build();
     }

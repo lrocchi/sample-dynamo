@@ -9,6 +9,7 @@ import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
 import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,14 +21,14 @@ public class Handler {
     }
 
 
-    public List<Transaction> queryTable(String partition_id, String sort_id) {
+    public List<Transaction> queryTable(String partitionId, String sortId) {
         try {
             DynamoDbEnhancedClient enhancedClient = DependencyFactory.dynamoDbEnhancedClient();
 
             DynamoDbTable<Transaction> transactionTable = enhancedClient.table("Transaction", TableSchema.fromBean(Transaction.class));
             QueryConditional queryConditional = QueryConditional
                     .keyEqualTo(Key.builder()
-                            .partitionValue(partition_id).sortValue(sort_id)
+                            .partitionValue(partitionId).sortValue(sortId)
                             .build());
 
             // Get items in the table and write out the ID value.
@@ -45,7 +46,7 @@ public class Handler {
         } catch (DynamoDbException e) {
             System.err.println(e.getMessage());
             System.exit(1);
-            return null;
+            return Collections.emptyList();
         }
     }
     public Transaction putItem(Transaction item){
